@@ -1,0 +1,30 @@
+.main-section{
+    background-color: antiquewhite;
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.main-section > div{
+    overflow: scroll;
+}
+
+.cell-none{
+    background-color: rgba(184, 72, 72, 0.973);
+}
+
+.cell-uni{
+    background-color: rgba(231, 165, 165, 0.973);
+}
+
+.cell-bi{
+    background-color: rgba(236, 200, 200, 0.973);
+}
+
+.cell{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    box-sizing: border-box;
+}
