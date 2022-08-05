@@ -8,8 +8,12 @@
     flex-wrap: wrap;
 }
 
-.blocked , .horizontal-scroll , .vertical-scroll{
+.container{
     overflow: hidden;
+}
+
+.blocked , .horizontal-scroll , .vertical-scroll{
+    overflow: scroll;
 }
 
 .all-scroll{

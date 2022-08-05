@@ -43,29 +43,50 @@
 
             let mainView = document.querySelector('.main-section')
 
-            if(mainView){
+            if (mainView) {
                 mainView.remove()
             }
 
             mainView = document.createElement('div')
             mainView.classList.add('main-section')
 
+            let blockedContainer = document.createElement('div')
+            blockedContainer.classList.add('container')
+            blockedContainer.style.height = `${blockedSection.height}px`
+            blockedContainer.style.width = `${blockedSection.width}px`
             let blockedView = document.createElement('div')
             blockedView.classList.add('blocked')
+            blockedContainer.appendChild(blockedView)
 
+            let horizontalContainer = document.createElement('div')
+            horizontalContainer.classList.add('container')
+            horizontalContainer.style.height = `${horizontalScrollSection.height}px`
+            horizontalContainer.style.width = `${horizontalScrollSection.width}px`
             let horizontalView = document.createElement('div')
             horizontalView.classList.add('horizontal-scroll')
+            horizontalContainer.appendChild(horizontalView)
 
+
+            let verticalContainer = document.createElement('div')
+            verticalContainer.classList.add('container')
+            verticalContainer.style.height = `${verticalScrollSection.height}px`
+            verticalContainer.style.width = `${verticalScrollSection.width}px`
             let verticalView = document.createElement('div')
             verticalView.classList.add('vertical-scroll')
-           
+            verticalContainer.appendChild(verticalView)
+
+            let allScrollContainer = document.createElement('div')
+            allScrollContainer.classList.add('container')
+            allScrollContainer.style.height = `${allScrollSection.height}px`
+            allScrollContainer.style.width = `${allScrollSection.width}px`
             let allScroll = document.createElement('div')
             allScroll.classList.add('all-scroll')
+            allScrollContainer.appendChild(allScroll)
 
-            mainView.appendChild(blockedView)
-            mainView.appendChild(horizontalView)
-            mainView.appendChild(verticalView)
-            mainView.appendChild(allScroll)
+            mainView.appendChild(blockedContainer)
+            mainView.appendChild(horizontalContainer)
+            mainView.appendChild(verticalContainer)
+            mainView.appendChild(allScrollContainer)
 
             mainView.style.height = `${mainSection.height}px`
             mainView.style.width = `${mainSection.width}px`
@@ -101,6 +122,12 @@
                 verticalView.scrollTop = this.scrollTop
                 horizontalView.scrollLeft = this.scrollLeft
             })
+            horizontalView.onscroll = function(){
+                allScroll.scrollLeft = this.scrollLeft
+            }
+            verticalView.onscroll = function(){
+                allScroll.scrollTop = this.scrollTop
+            }
             document.querySelector('body').appendChild(mainView)
         }
 
@@ -108,7 +135,9 @@
         inputs.forEach((input) => {
             input.addEventListener('change', () => {
                 let key = input.getAttribute('id');
-                specificationObj[key] = parseInt(input.value)
+                let value = parseInt(input.value)
+                if (value < 0) value = 0
+                specificationObj[key] = value
                 generateMainView()
             })
         })
