@@ -72,5 +72,10 @@
         let allScroll = document.querySelector('.all-scroll')
         gridCreator(allScroll,(totalRows-blockedRows),(totalColumns-blockedColumns),allScrollSection.height,allScrollSection.width,'bi')
 
+        allScroll.addEventListener('scroll',function(){
+            verticalView.scrollTop = this.scrollTop
+            horizontalView.scrollLeft = this.scrollLeft
+        })
+
     }
 )()

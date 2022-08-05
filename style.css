@@ -1,12 +1,28 @@
 .main-section{
     background-color: antiquewhite;
     overflow: hidden;
+}
+
+.main-section {
     display: flex;
     flex-wrap: wrap;
 }
 
-.main-section > div{
+.blocked , .horizontal-scroll , .vertical-scroll{
+    overflow: hidden;
+}
+
+.all-scroll{
     overflow: scroll;
+}
+
+
+.cell{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    box-sizing: border-box;
 }
 
 .cell-none{
@@ -21,10 +37,4 @@
     background-color: rgba(236, 200, 200, 0.973);
 }
 
-.cell{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid black;
-    box-sizing: border-box;
-}
+
