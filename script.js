@@ -91,7 +91,7 @@
             mainView.style.height = `${mainSection.height}px`
             mainView.style.width = `${mainSection.width}px`
 
-            function gridCreator(node, rows, columns, height, width, type) {
+            function gridCreator(node, rows, columns, height, width, type,startRow,startColumn) {
                 node.style.display = 'grid'
                 node.style.gridTemplateRows = `repeat(${rows},${cellHeight}px)`
                 node.style.gridTemplateColumns = `repeat(${columns},${cellWidth}px)`
@@ -102,7 +102,7 @@
                         let cell = document.createElement('div')
                         cell.style.height = `${cellHeight}px`
                         cell.style.width = `${cellWidth}px`
-                        cell.innerText = `${i},${j}`
+                        cell.innerText = `${startRow+i},${startColumn+j}`
                         cell.classList.add(`cell-${type}`)
                         cell.classList.add('cell')
                         node.appendChild(cell)
@@ -110,13 +110,13 @@
                 }
             }
 
-            gridCreator(blockedView, blockedRows, blockedColumns, blockedSection.height, blockedSection.width, 'none')
+            gridCreator(blockedView, blockedRows, blockedColumns, blockedSection.height, blockedSection.width, 'none',1,1)
 
-            gridCreator(horizontalView, blockedRows, (totalColumns - blockedColumns), horizontalScrollSection.height, horizontalScrollSection.width, 'uni')
+            gridCreator(horizontalView, blockedRows, (totalColumns - blockedColumns), horizontalScrollSection.height, horizontalScrollSection.width, 'uni',1,blockedColumns+1)
 
-            gridCreator(verticalView, (totalRows - blockedRows), blockedColumns, verticalScrollSection.height, verticalScrollSection.width, 'uni')
+            gridCreator(verticalView, (totalRows - blockedRows), blockedColumns, verticalScrollSection.height, verticalScrollSection.width, 'uni',blockedRows+1,1)
 
-            gridCreator(allScroll, (totalRows - blockedRows), (totalColumns - blockedColumns), allScrollSection.height, allScrollSection.width, 'bi')
+            gridCreator(allScroll, (totalRows - blockedRows), (totalColumns - blockedColumns), allScrollSection.height, allScrollSection.width, 'bi',blockedRows+1,blockedColumns+1)
 
             allScroll.addEventListener('scroll', function () {
                 verticalView.scrollTop = this.scrollTop
@@ -128,7 +128,7 @@
             verticalView.onscroll = function(){
                 allScroll.scrollTop = this.scrollTop
             }
-            document.querySelector('body').appendChild(mainView)
+            document.querySelector('.grid-container').appendChild(mainView)
         }
 
         let inputs = document.querySelectorAll('input')
