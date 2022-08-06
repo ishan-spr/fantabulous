@@ -16,6 +16,18 @@
     overflow: scroll;
 }
 
+.vertical-scroll::-webkit-scrollbar{
+    display: none;
+}
+
+.horizontal-scroll::-webkit-scrollbar{
+    display: none;
+}
+
+.blocked::-webkit-scrollbar{
+    display: none;
+}
+
 .all-scroll{
     overflow: scroll;
 }
