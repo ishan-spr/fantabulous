@@ -57,6 +57,8 @@ label{
 .main-section {
     display: flex;
     flex-wrap: wrap;
+    background-color: transparent;
+    overflow: auto;
 }
 
 .container{
@@ -77,6 +79,10 @@ label{
 
 .blocked::-webkit-scrollbar{
     display: none;
+}
+
+.all-scroll-container::-webkit-scrollbar-track{
+    background-color:transparent;
 }
 
 .all-scroll-container{

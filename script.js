@@ -12,6 +12,15 @@
             blockedColumns: 3,
         }
 
+        function validate() {
+            let { totalColumns, totalRows, inViewRows, inViewColumns, blockedRows, blockedColumns } = specificationObj
+            let { max , min } = Math
+            specificationObj = { ...specificationObj, 
+                inViewColumns: min(max(1, max(inViewColumns, blockedColumns + 1)),totalColumns),
+                inViewRows: min(max(1, max(inViewRows, blockedRows + 1)),totalRows )
+                }
+        }
+
         function generateMainView() {
 
             let { totalRows, totalColumns, inViewRows, inViewColumns, blockedRows, blockedColumns } = specificationObj
@@ -50,7 +59,7 @@
             mainView = document.createElement('div')
             mainView.classList.add('main-section')
 
-            function containerGenerator(height , width , className){
+            function containerGenerator(height, width, className) {
                 let container = document.createElement('div')
                 container.classList.add('container')
                 container.style.height = `${height}px`
@@ -58,12 +67,12 @@
                 let view = document.createElement('div')
                 view.classList.add(className)
                 container.appendChild(view)
-                return [container,view]
+                return [container, view]
             }
 
-            let [blockedContainer,blockedView] = containerGenerator(blockedSection.height,blockedSection.width,'blocked')
-            let [horizontalContainer,horizontalView] = containerGenerator(horizontalScrollSection.height,horizontalScrollSection.width,'horizontal-scroll')
-            let [verticalContainer,verticalView] = containerGenerator(verticalScrollSection.height,verticalScrollSection.width,'vertical-scroll')
+            let [blockedContainer, blockedView] = containerGenerator(blockedSection.height, blockedSection.width, 'blocked')
+            let [horizontalContainer, horizontalView] = containerGenerator(horizontalScrollSection.height, horizontalScrollSection.width, 'horizontal-scroll')
+            let [verticalContainer, verticalView] = containerGenerator(verticalScrollSection.height, verticalScrollSection.width, 'vertical-scroll')
 
             let allScrollContainer = document.createElement('div')
             allScrollContainer.classList.add('all-scroll-container')
@@ -132,11 +141,12 @@
 
         let inputs = document.querySelectorAll('input')
         inputs.forEach((input) => {
-            input.addEventListener('change', () => {
+            input.addEventListener('input', () => {
                 let key = input.getAttribute('id');
                 let value = parseInt(input.value)
                 if (value < 0) value = 0
                 specificationObj[key] = value
+                validate(specificationObj)
                 generateMainView()
             })
         })
