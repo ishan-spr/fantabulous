@@ -42,10 +42,6 @@ label{
    align-items: center;
 }
 
-.main-section{
-    background-color: antiquewhite;
-}
-
 .main-section {
     display: flex;
     flex-wrap: wrap;
@@ -71,7 +67,7 @@ label{
     display: none;
 }
 
-.all-scroll{
+.all-scroll-container{
     overflow: scroll;
 }
 
