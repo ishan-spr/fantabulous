@@ -8,8 +8,8 @@
             totalColumns: 25,
             inViewRows: 10,
             inViewColumns: 10,
-            blockedRows: 4,
-            blockedColumns: 5,
+            blockedRows: 2,
+            blockedColumns: 3,
         }
 
         function generateMainView() {
@@ -50,30 +50,20 @@
             mainView = document.createElement('div')
             mainView.classList.add('main-section')
 
-            let blockedContainer = document.createElement('div')
-            blockedContainer.classList.add('container')
-            blockedContainer.style.height = `${blockedSection.height}px`
-            blockedContainer.style.width = `${blockedSection.width}px`
-            let blockedView = document.createElement('div')
-            blockedView.classList.add('blocked')
-            blockedContainer.appendChild(blockedView)
+            function containerGenerator(height , width , className){
+                let container = document.createElement('div')
+                container.classList.add('container')
+                container.style.height = `${height}px`
+                container.style.width = `${width}px`
+                let view = document.createElement('div')
+                view.classList.add(className)
+                container.appendChild(view)
+                return [container,view]
+            }
 
-            let horizontalContainer = document.createElement('div')
-            horizontalContainer.classList.add('container')
-            horizontalContainer.style.height = `${horizontalScrollSection.height}px`
-            horizontalContainer.style.width = `${horizontalScrollSection.width}px`
-            let horizontalView = document.createElement('div')
-            horizontalView.classList.add('horizontal-scroll')
-            horizontalContainer.appendChild(horizontalView)
-
-
-            let verticalContainer = document.createElement('div')
-            verticalContainer.classList.add('container')
-            verticalContainer.style.height = `${verticalScrollSection.height}px`
-            verticalContainer.style.width = `${verticalScrollSection.width}px`
-            let verticalView = document.createElement('div')
-            verticalView.classList.add('vertical-scroll')
-            verticalContainer.appendChild(verticalView)
+            let [blockedContainer,blockedView] = containerGenerator(blockedSection.height,blockedSection.width,'blocked')
+            let [horizontalContainer,horizontalView] = containerGenerator(horizontalScrollSection.height,horizontalScrollSection.width,'horizontal-scroll')
+            let [verticalContainer,verticalView] = containerGenerator(verticalScrollSection.height,verticalScrollSection.width,'vertical-scroll')
 
             let allScrollContainer = document.createElement('div')
             allScrollContainer.classList.add('all-scroll-container')
