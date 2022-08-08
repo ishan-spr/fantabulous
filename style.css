@@ -1,6 +1,18 @@
 body{
     height: 100%;
     width: 100%;
+    font-family:cursive;
+    background-color: rgba(240, 224, 224, 0.973);
+    margin: 0px;
+    padding: 0px;
+}
+
+.description{
+    background-color: rgba(184, 72, 72, 0.973);
+    box-sizing: border-box;
+    padding: 15px;
+    border-radius: 30px;
+    color: white;
 }
 
 .grid-container{
@@ -81,7 +93,7 @@ label{
 }
 
 .cell-none{
-    background-color: rgba(184, 72, 72, 0.973);
+    background-color:rgba(228, 127, 127, 0.973);
 }
 
 .cell-uni{
